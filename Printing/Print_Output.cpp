@@ -1,0 +1,59 @@
+/*******************************************
+ * Author: Michail Georgiou 
+*  Last Modified: Time-stamp: <2014-09-12 10:21:16 mike_georgiou>   
+*
+*
+Print_Output.cpp -- This function  will write the data into a
+    format that will be ready for initialiation for another run. 
+*
+* Written on Thursday, 28 August 2014.
+********************************************/
+
+#include"../Struct.h"
+
+
+#include <iostream>
+#include <fstream>
+#include <sstream>
+// #include <limits>
+
+using namespace std;
+
+void Print_Output(Ar out,
+                  int ldx, int ldy, int ldz)
+{
+
+  // typedef std::numeric_limits< double > dbl;
+
+  ofstream output_file;
+  output_file.open("output_data.dat");
+
+  //obtaining full precision of for my quantities
+  // output_file.precision(dbl::digits10);
+   output_file.precision(17);
+
+
+  // I am saving the files in a specific format.
+  // rho u v w p t
+
+  for (int k = 0; k < ldz; k++){
+    for (int j = 0; j < ldy; j++){
+      for (int i = 0; i < ldx; i++){
+
+        output_file<<fixed<<out.rho[k][j][i]<<" ";
+        output_file<<fixed<<out.velocity_x[k][j][i]<<" ";
+        output_file<<fixed<<out.velocity_y[k][j][i]<<" ";
+        output_file<<fixed<<out.velocity_z[k][j][i]<<" ";
+        output_file<<fixed<<out.pressure[k][j][i]<<" ";
+        output_file<<fixed<<out.temperature[k][j][i]<<" ";
+        output_file<<endl;    
+      }
+
+    }	    
+  }   
+
+
+
+
+
+}

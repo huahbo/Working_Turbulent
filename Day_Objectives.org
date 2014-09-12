@@ -1,0 +1,52 @@
+* Objectives for Thursday 28/08 [4/5]
+
+- [X] Write the time averaging routine
+
+- [X] Have a run for C_s=0.08 and average through time for t=5
+  - This will be done after running the code with bamdads initial data
+    for 1000 steps and then rerun the program.
+
+
+- [X] Write the function that computes the statistical quantities.
+  - Only the output left.
+
+- [X] Write the preprocessing function.
+     - I am evaluating it now
+
+
+- [ ] Write the Dynamic Smagorinsky model
+
+  
+
+* Objectives for Wednesday 03/09 [5/8]
+- [ ] compute the reynolds stresses and save the statistical data at another
+  file  
+  - [ ] I did not visualize the results though, action that i need to do and be 
+    cautious with.
+- From now on i ll save the statistical data into a different file called "statistical_data"
+
+- [X] Compute u_tau at both walls
+  - The time averaging will start when u_tau ~=1 at both walls
+- [X] Convert the main code in order to start taking averages when u_tau ~=1 at
+  both walls
+- [X] Write a function that compares if mean_u is symmetric along the x_axis
+  - When the profile is symmetric the code is converged
+
+- [ ] These functions are written but not evaluated
+
+- [X] Run a simulation with constant dt(0.001) for initial 
+
+- [X] Check the dynamic smagorinsky function
+
+- [ ] Read kim-moin  and deardorff paper
+
+* Objectives for Friday 05/09 [2/8]
+- [X] Run a simulation with flipped data along the x direction 2nd order lhs
+- [X] Run a simulation with cfl=0.1 and 4th order lhs
+- [ ] Write a document that describes the equations and the algorithm that my
+  code follows.
+- [ ] Check the values that are used to compute the Res* at the corrector stage.
+- [ ] Check the process that i am doing when computing the auxilary fluxes
+- [ ] Check how the implicit treatment of the viscous terms is being done
+- [ ] Compute the energy spectra of the statistically averaged data
+- [ ] Check why the static smagorinsky in not working

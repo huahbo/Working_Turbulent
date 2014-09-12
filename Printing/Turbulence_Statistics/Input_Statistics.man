@@ -1,0 +1,12 @@
+# number of solution points in the X direction
+64
+# number of solution points in the Y direction
+64
+# number of solution points in the Z direction
+64
+# Dimension of domain in th X direction
+12.566370614359172
+# Dimension of domain in th Y direction
+2.
+# Dimension of domain in th Z direction
+4.188790204786391

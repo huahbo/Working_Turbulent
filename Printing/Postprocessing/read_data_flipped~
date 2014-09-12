@@ -1,0 +1,11 @@
+fopen('u_tilda.bin')
+u_tilda_flipped=array_reader_z(fread(ans,'double'),66,64,64);
+
+fopen('v_tilda.bin')
+v_tilda_flipped=array_reader_z(fread(ans,'double'),64,66,64);
+
+fopen('w_tilda.bin')
+w_tilda_flipped=array_reader_z(fread(ans,'double'),64,64,66);
+
+fopen('rhs0.bin')
+rhs_flipped0=fread(ans,'double');

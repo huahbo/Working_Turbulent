@@ -1,0 +1,19 @@
+* Objectives for Thursday 28/08 [3/5]
+
+- [X] Write the time averaging routine
+
+- [ ] Have a run for C_s=0.08 and average through time for t=5
+      - This will be done after running the code with bamdads initial data
+        for 1000 steps and then rerun the program.
+
+
+- [X] Write the function that computes the statistical quantities.
+  - Only the output left.
+
+- [X] Write the preprocessing function.
+     - I am evaluating it now
+
+
+- [ ] Write the Dynamic Smagorinsky model
+
+  

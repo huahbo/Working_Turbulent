@@ -1,0 +1,87 @@
+/*******************************************
+ * Author: Michail Georgiou
+ *  Last Modified: Time-stamp: <2014-09-02 14:14:40 mike_georgiou>
+ *
+ *
+Beta_Computation.cpp -- This function computes the variable beta
+    which is part of the procedure of computation of the dynamic eddy
+    viscosity
+    *
+    * Written on Tuesday,  2 September 2014.
+    ********************************************/
+
+#include "Dynamic_Smagorinsky.h"
+ #include "Dynamic_Smagorinsky-inl.h"
+
+
+void Beta_Computation(turbulence_derivatives filtered,
+                      turbulence_variables beta,
+                      double ***rho,
+                      double dx, double *dy, double dz,
+                      int ldx, int ldy, int ldz)
+{
+
+
+  // At the first stage of this function the spatial derivatives of
+  // the velocity components will be computed.
+  for (int k = 0; k < ldz; k++){
+    for (int j = 0; j < ldy; j++){
+      for (int i = 0; i < ldx; i++){
+
+
+        //computing the characteristic filtered rate of strain
+        double  filtered_strain =
+          2*(filtered.u_over_x[k][j][i]*filtered.u_over_x[k][j][i]+
+             filtered.v_over_y[k][j][i]*filtered.v_over_y[k][j][i]+
+             filtered.w_over_z[k][j][i]*filtered.w_over_z[k][j][i]+
+             filtered.u_over_y[k][j][i]*filtered.v_over_x[k][j][i]+
+             filtered.u_over_z[k][j][i]*filtered.w_over_x[k][j][i]+
+             filtered.v_over_z[k][j][i]*filtered.w_over_y[k][j][i])
+
+          +(filtered.u_over_y[k][j][i]*filtered.u_over_y[k][j][i] +
+            filtered.u_over_z[k][j][i]*filtered.u_over_z[k][j][i] +
+            filtered.v_over_x[k][j][i]*filtered.v_over_x[k][j][i] +
+            filtered.v_over_z[k][j][i]*filtered.v_over_z[k][j][i] +
+            filtered.w_over_x[k][j][i]*filtered.w_over_x[k][j][i] +
+            filtered.w_over_y[k][j][i]*filtered.w_over_y[k][j][i]);
+
+        filtered_strain= sqrt(filtered_strain);
+
+        double C_s= rho[k][j][i]
+          *(4.*dx*dx+(4.*(2.*dy[j]*2.*dy[j]))+4.*dz*dz)
+          *filtered_strain;
+
+
+        //computation of the variable beta.
+
+        //xx xy xz
+        beta.xx[k][j][i]=C_s*(2./3.*filtered.u_over_x[k][j][i]
+                                   -1./3.*(filtered.v_over_y[k][j][i]
+                                           +filtered.w_over_z[k][j][i]));
+
+        beta.xy[k][j][i]=C_s*(filtered.u_over_y[k][j][i]
+                                   +filtered.v_over_x[k][j][i])/2.;
+
+        beta.xz[k][j][i]=C_s*(filtered.u_over_z[k][j][i]
+                                   +filtered.w_over_x[k][j][i])/2.;
+
+        //yy yz
+        beta.yy[k][j][i]=C_s*(2./3.*filtered.v_over_y[k][j][i]
+                                   -1./3.*(filtered.u_over_x[k][j][i]
+                                           +filtered.w_over_z[k][j][i]));
+
+
+        beta.xz[k][j][i]=C_s*(filtered.v_over_z[k][j][i]
+                                   +filtered.w_over_y[k][j][i])/2.;
+
+        //zz
+        beta.zz[k][j][i]=C_s*(2./3.*filtered.w_over_z[k][j][i]
+                                   -1./3.*(filtered.v_over_y[k][j][i]
+                                           +filtered.u_over_x[k][j][i]));
+
+      }
+    }
+  }
+
+
+}

@@ -1,0 +1,50 @@
+/*******************************************
+ * Author: Michail Georgiou 
+*  Last Modified: Time-stamp: <2014-09-03 12:39:10 mike_georgiou>   
+*
+*
+Convergence_Evaluation.cpp -- This code will compute the u_mean and will
+    check if it is symmetric along the X-Axis. If yes, the simulation
+    is converged
+*
+* Written on Wednesday,  3 September 2014.
+********************************************/
+
+#include<math.h>
+
+int  Convergence_Evaluation(double ***velocity_x,
+                            int ldx, int ldy, int ldz)
+{
+
+  double mean_x[ldy];
+
+    for (int j = 0; j < ldy; j++){
+      double sum=0.;
+
+      for (int k = 0; k < ldz; k++){
+        for (int i = 0; i < ldx; i++){
+      
+          sum+=velocity_x[k][j][i];
+
+        }
+      }	    
+
+      sum/=ldx*ldz;
+      mean_x[j]=sum;
+    }   
+    double max=100.;
+    //check if the mean_x is symmetric along the X-Axis
+    for(int j=0; j<ldy; j++)
+      {
+
+        double temp=fabs((mean_x[j]-mean_x[ldy-1-j])/mean_x[j]);
+        max=fmin(max,temp);
+
+      }
+
+
+    if(max<=1e-2)return 1;
+    else return 0;
+
+   
+}

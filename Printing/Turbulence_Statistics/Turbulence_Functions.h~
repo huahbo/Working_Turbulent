@@ -1,0 +1,42 @@
+#include "Turbulence_Structure.h"
+
+#ifndef TURBULENCE_FUNCTIONS_H
+#define TURBULENCE_FUNCTIONS_H
+
+
+void Allocator( int ldx, int ldy, int ldz,
+                int lx, int rx,
+                int ly, int ry,
+                int lz, int rz,
+                stats *Arr);
+
+
+void DeAllocator( stats *Arr,
+                  int ldz, int ldy, int ldx,
+                  int lx, int rx,
+                  int ly, int ry,
+                  int lz, int rz);
+
+
+void Allocator_1D(  int ldy,
+                    output *out);
+
+void DeAllocator_1D(output *out);
+
+
+
+void Information_Reader(int *ldx,int *ldy, int *ldz,
+                        double *length_x, double *length_y, 
+                        double *length_z);
+
+
+void Initial_Reader(stats variables,
+                    domain grid);
+
+
+
+void Statistical_Analysis(stats variables,
+                          output out,
+                          domain grid);
+
+#endif

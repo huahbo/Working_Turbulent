@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if ["$1" -eq "1"]; then
+sed -i "2s/*/$2" Input_Grid.man
+sed -i "4s/*/$2" Input_Grid.man
+fi

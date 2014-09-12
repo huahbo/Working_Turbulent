@@ -1,0 +1,37 @@
+/*******************************************
+ * Author: Michail Georgiou 
+*  Last Modified: Time-stamp: <2014-09-02 14:07:23 mike_georgiou>   
+*
+*
+Derivative_Computation.cpp -- 
+*
+* Written on Tuesday,  2 September 2014.
+********************************************/
+
+
+
+void Derivative_Computation()
+{
+
+        //Computing the derivatives of
+        Gradients_Computation( velocity_x,
+                               subgrid.u_over_x,subgrid.u_over_y,
+                               subgrid.u_over_z,
+                               dx, dy, dz,
+                               i, j, k);
+
+        Gradients_Computation( velocity_y,
+                               subgrid.v_over_x,subgrid.v_over_y,
+                               subgrid.v_over_z,
+                               dx, dy, dz,
+                               i, j, k);
+
+        Gradients_Computation( velocity_z,
+                               subgrid.w_over_x,subgrid.w_over_y,
+                               subgrid.w_over_z,
+                               dx, dy, dz,
+                               i, j, k);
+
+
+
+}

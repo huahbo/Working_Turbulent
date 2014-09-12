@@ -1,0 +1,7 @@
+#!/bin/bash
+
+
+sed -i "10s/$1/$2/" Input_Ghost.man
+sed -i "12s/$1/$2/" Input_Ghost.man
+
+cat Input_Ghost.man

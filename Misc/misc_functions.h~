@@ -1,0 +1,27 @@
+#ifndef MISC_FUNCTIONS_H
+#define MISC_FUNCTIONS_H
+
+void Next_Step(Ar* Arr);
+void Predictor_To_Corrector(Ar* Arr);
+
+
+
+
+
+
+void Maximum_Velocities(double*** velocity_x, double*** velocity_y,
+                        double*** velocity_z,
+                        double* u_max, double* v_max, double* w_max,
+                        int ldx, int ldy, int ldz);
+
+
+
+void Information_Reader(int *ldx,int *ldy, int *ldz,
+                        double *cfl, double *tolerance, int* iterations,double*,
+                        int *);
+
+
+
+
+
+#endif

@@ -1,0 +1,8 @@
+#ifndef STATISTICAL_ANALYSIS_H
+#define STATISTICAL_ANALYSIS_H
+
+void Mean_Computation(double*** quantity,
+                      double* mean,
+                      domain grid);
+
+#endif

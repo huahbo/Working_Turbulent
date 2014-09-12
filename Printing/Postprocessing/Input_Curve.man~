@@ -1,0 +1,20 @@
+# level that the curve will be take from in the x direction
+63
+# level that the curve will be take from in the y direction
+63
+# level that the curve will be take from in the z direction
+63
+# curve at the xy plane will be taken at that constant x
+62
+# curve at the xy plane will be taken at that constant y
+62
+# curve at the xz plane will be taken at that constant x
+61
+# curve at the xz plane will be taken at that constant z
+61
+# curve at the yz plane will be taken at that constant y
+63
+# curve at the yz plane will be taken at that constant z
+63
+# printing ghost cells (2) or not(1)
+1

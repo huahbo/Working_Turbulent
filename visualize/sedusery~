@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+sed -i "6s/*/$1/" Input_Ghost.man
+sed -i "8s/*/$1/" Input_Ghost.man
+

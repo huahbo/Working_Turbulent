@@ -1,0 +1,39 @@
+/*******************************************
+ * Author: Michail Georgiou
+ *  Last Modified: Time-stamp: <2014-08-28 12:28:19 mike_georgiou>
+ *
+ *
+Initial_Reader.cpp -- This program reads the initial velocity
+profiles from a number of data files that will be introduced by the
+user in this folder.
+*
+* Written on Thursday, 15 May 2014.
+********************************************/
+
+#include "Initial_Reader.h"
+
+void Initial_Reader(stats variables,
+                    domain grid)
+{
+
+
+  Data_Reader( variables.velocity_x,"u_time_averaged0.bin",
+               grid);
+
+  Data_Reader( variables.velocity_y,"v_time_averaged0.bin",
+               grid);
+
+  Data_Reader( variables.velocity_z,"z_time_averaged0.bin",
+               grid);
+
+  Data_Reader( variables.velocity_x_square,"v_square_time_averaged0.bin",
+               grid);
+
+  Data_Reader( variables.velocity_y_square,"v_square_time_averaged0.bin",
+               grid);
+
+  Data_Reader( variables.velocity_z_square,"v_square_time_averaged0.bin",
+               grid);
+
+
+}

@@ -1,0 +1,52 @@
+/*******************************************
+ * Author: Michail Georgiou 
+*  Last Modified: Time-stamp: <2014-08-19 11:57:50 mike_georgiou>   
+*
+*
+Viscous_Term2ND.cpp -- This function computes the viscous term of the velocity
+residuals
+*
+* Written on Tuesday, 19 August 2014.
+********************************************/
+
+#include "Residuals-inl.h"
+
+double Viscous_Term2ND(double ***velocity,
+                       double *explicit_term,
+                       double Reynolds,
+                       double dx, double* dy, double dz,
+                       int i, int j, int k)
+  
+{
+
+  double viscous_terms[3];
+
+
+  // Computing the viscous component in the x direction.
+  viscous_terms[0]= 1./dx*((velocity[k][j][i+1]-velocity[k][j][i])/dx
+                           -(velocity[k][j][i]-velocity[k][j][i-1])/dx);
+
+
+  // Computing the viscous component in the y direction.
+  // This term will be placed in the lhs of the equation
+  // since the u_tilda is being computed implicitly along the y
+  viscous_terms[1]=1./(2.*dy[j])*( (velocity[k][j+1][i]-velocity[k][j][i])
+                                   /(dy[j]+dy[j+1])
+                                   -(velocity[k][j][i]-velocity[k][j-1][i])
+                                   /(dy[j]+dy[j-1]));
+
+
+  // Computing the viscous components in the z direction
+  viscous_terms[2] = 1./dz*( (velocity[k+1][j][i]-velocity[k][j][i])/dz
+                             -(velocity[k][j][i]-velocity[k-1][j][i])/dz);
+
+
+  double viscous_total=viscous_terms[0]+viscous_terms[2];
+
+
+  //Returning the explicit term also
+  *explicit_term = viscous_terms[1]/Reynolds;
+
+  return viscous_total/Reynolds;
+
+}

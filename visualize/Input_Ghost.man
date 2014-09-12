@@ -1,0 +1,12 @@
+# ghost cells left x
+1
+# ghost cells right x
+1
+# ghost cells left y
+1
+# ghost cells right y
+1
+# ghost cells left z
+1
+# ghost cells right z
+1

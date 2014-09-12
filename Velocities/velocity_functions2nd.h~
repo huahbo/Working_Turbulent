@@ -1,0 +1,9 @@
+#ifndef VELOCITY_FUNCTIONS2ND_H
+#define VELOCITY_FUNCTIONS2ND_H
+
+void Velocity_Update_X2ND(double*** velocity_x, double*** velocity_x_tilda,
+                       double*** rho, double*** pressure,
+                       double dx, double dt,
+                          int ldx, int ldy, int ldz);
+
+#endif

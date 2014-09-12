@@ -1,0 +1,70 @@
+/*******************************************
+ * Author: Michail Georgiou 
+*  Last Modified: Time-stamp: <2014-08-25 18:07:36 mike_georgiou>   
+*
+*
+Velocity_Residual_Initialization.cpp -- This function will initialize the
+residuals 
+*
+* Written on Tuesday, 19 August 2014.
+********************************************/
+#include"residual_initialization.h"
+
+
+void Velocity_Residual_Initialization(double ***residual_x, double***residual_y,
+                                      double *** residual_z,double***velocity_x,
+                                      double ***velocity_y, double***velocity_z,
+                                      double ***flux_x, double ***flux_y, 
+                                      double***flux_z, 
+                                      double ***eddy_viscosity,
+                                      double Reynolds,
+                                      double pressure_gradient,
+                                      double *explicit_term,
+                                      double dx, double *dy, double dz,
+                                      int ldx, int ldy, int ldz)
+{
+
+for (int k = 0; k < ldz; k++){
+  for (int j = 0; j < ldy; j++){
+    for (int i = 0; i < ldx; i++){
+   
+      Velocity_Residual_2ND_X( residual_x,
+                               velocity_x,
+                               flux_x,  flux_y,
+                               flux_z,
+                               eddy_viscosity,
+                               Reynolds,
+                               -pressure_gradient,
+                               dx, dy,  dz,
+                               i,  j,  k,
+                               explicit_term);
+
+      Velocity_Residual_2ND_Y( residual_y,
+                               velocity_y,
+                               flux_x,  flux_y,
+                               flux_z,
+                               eddy_viscosity,
+                               Reynolds,
+                               0.,
+                               dx, dy,  dz,
+                               i,  j,  k,
+                               explicit_term);
+
+      Velocity_Residual_2ND_Z( residual_z,
+                               velocity_z,
+                               flux_x,  flux_y,
+                               flux_z,
+                               eddy_viscosity,
+                               Reynolds,
+                               0.,
+                               dx, dy,  dz,
+                               i,  j,  k,
+                               explicit_term);
+   
+    }
+  }	    
+ }   
+
+
+
+}
